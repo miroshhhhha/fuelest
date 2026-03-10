@@ -57,7 +57,7 @@ A high-performance, real-time fuel price monitoring dashboard for Estonia. This 
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/fuelest-clone.git
+   git clone https://github.com/miroshhhhha/fuelest.git
    cd fuelest-clone
    ```
 2. Install dependencies:
