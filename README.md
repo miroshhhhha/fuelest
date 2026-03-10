@@ -1,30 +1,30 @@
 # Fuelest Estonia
 
-A modern, real-time fuel price tracking application for Estonia. This tool helps users find the best deals at gas stations across the country with an interactive map and sorted price lists.
+A modern, real-time fuel price tracking application for Estonia.
 
 ## 📊 Data Source
-**Important:** This project does not own the data. All fuel price information is retrieved in real-time from [fuelest.ee](https://fuelest.ee/). We are grateful for their service in providing transparent fuel pricing for the Estonian community.
+**Important:** This application is entirely powered by data from [fuelest.ee](https://fuelest.ee/). All fuel price information, station locations, and historical trends are retrieved in real-time from their services. This project is a third-party interface and is not affiliated with fuelest.ee.
 
 ## ✨ Features
 - **Real-time Tracking**: Up-to-date prices for 95, 98, Diesel, and LPG.
-- **Interactive Map**: Built with Leaflet to visualize station locations across Estonia.
+- **Price Trends**: Interactive charts showing fuel and Brent oil price history.
+- **Interactive Map**: Visualize gas station locations across Estonia.
+- **Custom Search Radius**: Click anywhere on the map to find all stations and best prices within a chosen range (200m to 25km).
 - **Best Deals (24h)**: Highlighting the cheapest options available within the last 24 hours.
-- **Station Search & Focus**: Clicking on a price card automatically focuses the map on that specific station.
 - **Navigation Integration**: Quick links to open station locations in Google Maps or Waze.
-- **Responsive Design**: Fully functional on both desktop and mobile devices.
 
 ## 🛠 Tech Stack
-- **Frontend**: React 18, TypeScript, Vite
+- **Frontend**: React 19, TypeScript, Vite
+- **Charting**: Recharts
 - **Mapping**: Leaflet & React-Leaflet
-- **Styling**: Vanilla CSS (Custom properties/Variables)
-- **Icons**: Lucide-inspired SVG components
+- **Styling**: Vanilla CSS
 - **Linting**: ESLint with TypeScript configurations
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (Latest LTS recommended)
-- npm or yarn
+- Node.js (Latest LTS)
+- npm
 
 ### Installation
 1. Clone the repository
@@ -42,5 +42,5 @@ A modern, real-time fuel price tracking application for Estonia. This tool helps
 npm run build
 ```
 
-## 📝 License
-This project is created for educational and personal use. Please refer to [fuelest.ee](https://fuelest.ee/) regarding their data usage policies.
+## 📝 Credits
+Special thanks to [fuelest.ee](https://fuelest.ee/) for providing the data that makes this application possible.

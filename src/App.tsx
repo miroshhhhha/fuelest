@@ -6,6 +6,7 @@ import { Hero } from './features/home/Hero';
 import { TopPicks } from './features/home/TopPicks';
 import { Stats } from './features/home/Stats';
 import { RadiusSearch } from './features/home/RadiusSearch';
+import { PriceChart } from './features/home/PriceChart';
 import './App.css';
 
 const FUEL_TYPES = [
@@ -110,6 +111,8 @@ function App() {
             )}
           </div>
         </section>
+
+        <PriceChart />
 
         <Stats stationCount={allStations.length} />
       </div>

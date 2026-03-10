@@ -9,9 +9,9 @@ export interface ApiFuelType {
   name: string;
   price: number;
   dateTime: string;
-  age: number; // minutes
+  age: number;
   logo: string;
-  unit: number; // 1: L, 2: kg
+  unit: number;
 }
 
 export interface ApiStation {
@@ -36,5 +36,27 @@ export interface ApiResponse {
   data: {
     counties: ApiCounty[];
     allStations: ApiStation[];
+  };
+}
+
+export interface PricePoint {
+  fuelTypeId: number;
+  day: string;
+  price: number;
+}
+
+export interface OilPoint {
+  day: string;
+  price: number;
+}
+
+export interface ChartDataResponse {
+  data: {
+    chartStep: number;
+    fuelTypePrices: {
+      fuelTypeId: number;
+      groupedPriceInfos: PricePoint[];
+    }[];
+    oilPrices: OilPoint[];
   };
 }

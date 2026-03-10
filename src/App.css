@@ -58,6 +58,9 @@ body {
 .hero { padding: 32px 0; text-align: center; }
 .hero h1 { font-size: 2.5rem; font-weight: 900; margin: 0; letter-spacing: -0.04em; }
 .subtitle { font-size: 1rem; color: var(--text-muted); margin-top: 8px; }
+.data-source-credit { font-size: 0.8rem; margin-top: 12px; font-weight: 500; color: var(--text-muted); }
+.data-source-credit a { color: var(--primary-color); text-decoration: none; font-weight: 700; border-bottom: 1px solid transparent; transition: border 0.2s; }
+.data-source-credit a:hover { border-bottom-color: var(--primary-color); }
 
 .top-picks-section { margin-bottom: 32px; }
 .section-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 16px; }
@@ -91,6 +94,7 @@ body {
 .main-map-section {
   background: white; border-radius: 20px; padding: 20px;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+  margin-bottom: 32px;
 }
 
 .map-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
@@ -233,3 +237,29 @@ body {
   width: 14px; height: 14px; background: var(--primary-color); border: 3px solid white; border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+/* Price Chart */
+.price-chart-section { margin-bottom: 32px; }
+.chart-card {
+  background: white; border-radius: 20px; padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+}
+.chart-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+.chart-title-group h3 { margin: 0; font-size: 1.25rem; font-weight: 800; }
+.chart-credit { margin: 4px 0 0; font-size: 0.75rem; color: var(--text-muted); }
+.chart-credit a { color: var(--primary-color); text-decoration: none; font-weight: 700; }
+
+.range-selector { display: flex; gap: 4px; background: #f1f5f9; padding: 4px; border-radius: 10px; }
+.range-btn { border: none; background: transparent; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
+.range-btn.active { background: white; color: var(--primary-color); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+.range-controls-wrapper { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.custom-date-inputs { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); }
+.custom-date-inputs input { border: 1px solid #e2e8f0; padding: 4px 8px; border-radius: 6px; font-family: inherit; font-size: 0.75rem; color: var(--text-main); outline: none; }
+.custom-date-inputs input:focus { border-color: var(--primary-color); }
+.apply-date-btn { background: var(--primary-color); color: white; border: none; padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 0.75rem; cursor: pointer; }
+.apply-date-btn:hover { opacity: 0.9; }
+
+.chart-container { width: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; }
+.chart-loading { font-size: 0.875rem; color: var(--text-muted); font-weight: 600; }
+.chart-error { font-size: 0.875rem; color: #ef4444; font-weight: 600; }
