@@ -123,20 +123,22 @@ export const PriceChart: React.FC = () => {
   }, [data, range, startDate, endDate]);
 
   return (
-    <section className="price-chart-section">
-      <div className="chart-card">
-        <div className="chart-header">
+    <section className="mb-8">
+      <div className="bg-white rounded-[20px] p-6 shadow-sm border border-slate-200">
+        <div className="flex flex-col lg:flex-row justify-between items-start mb-6 flex-wrap gap-4">
           <div className="chart-title-group">
-            <h3>Price Trends</h3>
-            <p className="chart-credit">Source: <a href="https://fuelest.ee" target="_blank" rel="noreferrer">fuelest.ee</a></p>
+            <h3 className="m-0 text-xl font-extrabold text-text-main">Price Trends</h3>
+            <p className="m-0 mt-1 text-[0.75rem] text-text-muted">
+              Source: <a href="https://fuelest.ee" target="_blank" rel="noreferrer" className="text-primary no-underline font-bold">fuelest.ee</a>
+            </p>
           </div>
           
-          <div className="range-controls-wrapper">
-            <div className="range-selector">
+          <div className="flex flex-col items-end gap-3">
+            <div className="flex gap-1 bg-slate-100 p-1 rounded-xl">
               {RANGES.map(r => (
                 <button 
                   key={r.value}
-                  className={`range-btn ${range === r.value ? 'active' : ''}`}
+                  className={`border-none bg-transparent py-1.5 px-3 rounded-lg text-[0.75rem] font-bold cursor-pointer transition-all duration-200 ${range === r.value ? 'bg-white text-primary shadow-sm' : 'text-text-muted'}`}
                   onClick={() => setRange(r.value)}
                 >
                   {r.label}
@@ -145,21 +147,36 @@ export const PriceChart: React.FC = () => {
             </div>
 
             {range === 'custom' && (
-              <div className="custom-date-inputs">
-                <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+              <div className="flex items-center gap-2 text-[0.75rem] text-text-muted animate-in fade-in duration-300">
+                <input 
+                  type="date" 
+                  value={startDate} 
+                  onChange={(e) => setStartDate(e.target.value)} 
+                  className="border border-slate-200 px-2 py-1 rounded-md outline-none focus:border-primary"
+                />
                 <span>to</span>
-                <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-                <button className="apply-date-btn" onClick={fetchData}>Apply</button>
+                <input 
+                  type="date" 
+                  value={endDate} 
+                  onChange={(e) => setEndDate(e.target.value)} 
+                  className="border border-slate-200 px-2 py-1 rounded-md outline-none focus:border-primary"
+                />
+                <button 
+                  className="bg-primary text-white border-none py-1 px-3 rounded-md font-bold cursor-pointer hover:opacity-90" 
+                  onClick={fetchData}
+                >
+                  Apply
+                </button>
               </div>
             )}
           </div>
         </div>
 
-        <div className="chart-container">
+        <div className="w-full min-h-[400px] flex items-center justify-center">
           {loading ? (
-            <div className="chart-loading">Loading trends...</div>
+            <div className="text-sm text-text-muted font-semibold">Loading trends...</div>
           ) : error ? (
-            <div className="chart-error">{error}</div>
+            <div className="text-sm text-red-500 font-semibold">{error}</div>
           ) : (
             <ResponsiveContainer width="100%" height={400}>
               <LineChart data={formattedData} margin={{ top: 20, right: 30, left: 0, bottom: 10 }}>

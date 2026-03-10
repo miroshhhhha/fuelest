@@ -1,12 +1,64 @@
-:root {
-  color-scheme: light; /* Форсируем светлую тему для начала */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2563eb;
+  --color-bg-main: #f8fafc;
+  --color-text-main: #0f172a;
+  --color-text-muted: #64748b;
+  --container-max: 1200px;
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
+@layer base {
+  body {
+    @apply bg-bg-main text-text-main font-sans antialiased m-0;
+  }
 }
 
-* {
-  box-sizing: border-box;
+/* Leaflet specific fixes */
+.leaflet-container img.leaflet-tile {
+  max-width: none !important;
+}
+
+.custom-leaflet-icon {
+  background: transparent;
+  border: none;
+}
+
+.custom-station-pin {
+  @apply w-8 h-8 rounded-full flex items-center justify-center border-2 border-white relative transition-transform duration-200;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.custom-station-pin:hover {
+  @apply scale-125 z-[1000];
+}
+
+.pin-tip {
+  @apply absolute -bottom-1.5 left-1/2 -translate-x-1/2 rotate-45 w-2.5 h-2.5 border-b-2 border-r-2 border-white;
+}
+
+.search-center-marker {
+  @apply w-3.5 h-3.5 bg-primary border-2 border-white rounded-full shadow-lg;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full;
+}
+
+/* Leaflet Popup styling to match design */
+.station-popup .leaflet-popup-content-wrapper {
+  @apply rounded-2xl p-0 overflow-hidden shadow-2xl border border-slate-100;
+}
+.station-popup .leaflet-popup-content {
+  @apply m-0 !w-[300px];
+}
+.station-popup .leaflet-popup-tip {
+  @apply bg-white;
 }

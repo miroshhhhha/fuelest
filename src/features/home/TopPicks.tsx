@@ -10,15 +10,15 @@ interface TopPicksProps {
 
 export const TopPicks: React.FC<TopPicksProps> = ({ topPicks, fuelTypes, onStationSelect }) => {
   return (
-    <section className="top-picks-section">
-      <div className="section-title">Best prices right now (24h)</div>
-      <div className="top-picks-grid-compact">
+    <section className="mb-8">
+      <div className="text-xl font-extrabold mb-4">Best prices right now (24h)</div>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 mb-2">
         {fuelTypes.map(type => {
           const pick = topPicks[type.id];
           return pick ? (
             <div 
               key={type.id} 
-              className="top-pick-clickable" 
+              className="cursor-pointer transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-98" 
               onClick={() => onStationSelect(pick.station.id)}
             >
               <StationCard 

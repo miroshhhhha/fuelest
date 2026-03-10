@@ -6,7 +6,7 @@ interface StatsProps {
 
 export const Stats: React.FC<StatsProps> = ({ stationCount }) => {
   return (
-    <section className="section-stats">
+    <section className="text-center py-10 text-text-muted text-sm">
       <p>Tracking {stationCount} stations across Estonia.</p>
     </section>
   );

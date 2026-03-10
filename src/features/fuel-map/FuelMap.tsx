@@ -135,31 +135,31 @@ export const FuelMap: React.FC<FuelMapProps> = ({
             }}
           >
             <Popup className="station-popup">
-              <div className="map-popup-content">
-                <div className="popup-header">
-                  <span className="popup-company" style={{ color: company.color }}>{company.name}</span>
-                  <h4 className="popup-name">{station.displayName}</h4>
-                  <p className="popup-address">{station.address}</p>
+              <div className="p-4 font-sans">
+                <div className="mb-3">
+                  <span className="text-[0.7rem] font-black uppercase tracking-wider" style={{ color: company.color }}>{company.name}</span>
+                  <h4 className="m-0 mt-1 text-[1.125rem] font-extrabold text-slate-900">{station.displayName}</h4>
+                  <p className="m-0 text-slate-500 text-[0.8125rem]">{station.address}</p>
                 </div>
                 
-                <div className="popup-fuel-list">
+                <div className="flex flex-col gap-1.5 mb-4">
                   {station.fuelTypes.map(f => (
-                    <div key={f.id} className={`popup-fuel-row ${f.id === selectedFuelId ? 'highlight' : ''}`}>
-                      <span className="fuel-name">{f.name.replace('Bensiin ', '')}</span>
-                      <div className="fuel-details">
-                        <span className="fuel-price">{formatPrice(f.price)}€</span>
-                        <span className="fuel-age">{formatAge(f.age)}</span>
+                    <div key={f.id} className={`flex justify-between items-center py-2 px-3 bg-slate-50 rounded-lg transition-all ${f.id === selectedFuelId ? 'bg-blue-50 border border-blue-200' : ''}`}>
+                      <span className="font-bold text-sm text-slate-700">{f.name.replace('Bensiin ', '')}</span>
+                      <div className="flex flex-col items-end">
+                        <span className="font-extrabold text-base text-slate-900 leading-tight">{formatPrice(f.price)}€</span>
+                        <span className="text-[0.65rem] text-slate-400">{formatAge(f.age)}</span>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="popup-actions-grid">
+                <div className="grid grid-cols-2 gap-2.5">
                   <a 
                     href={`https://www.google.com/maps/dir/?api=1&destination=${station.location.latitude},${station.location.longitude}`} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="action-btn gmaps"
+                    className="py-3 rounded-xl text-center no-underline text-[0.8125rem] font-extrabold text-white bg-[#4285F4] hover:brightness-110"
                   >
                     Google Maps
                   </a>
@@ -167,7 +167,7 @@ export const FuelMap: React.FC<FuelMapProps> = ({
                     href={`https://waze.com/ul?ll=${station.location.latitude},${station.location.longitude}&navigate=yes`} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="action-btn waze"
+                    className="py-3 rounded-xl text-center no-underline text-[0.8125rem] font-extrabold text-white bg-[#33CCFF] hover:brightness-110"
                   >
                     Waze
                   </a>
