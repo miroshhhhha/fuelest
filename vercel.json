@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-fuel/:path*",
+      "destination": "https://fuelest.ee/:path*"
+    }
+  ]
+}
