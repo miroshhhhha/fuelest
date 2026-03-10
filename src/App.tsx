@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Hero } from './features/home/Hero';
 import { TopPicks } from './features/home/TopPicks';
 import { Stats } from './features/home/Stats';
+import { RadiusSearch } from './features/home/RadiusSearch';
 import './App.css';
 
 const FUEL_TYPES = [
@@ -19,6 +20,8 @@ function App() {
   const [selectedMapFuelId, setSelectedMapFuelId] = useState<number | null>(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [focusedStationId, setFocusedStationId] = useState<number | null>(null);
+  const [searchCenter, setSearchCenter] = useState<{ lat: number; lon: number } | null>(null);
+  const [searchRadius, setSearchRadius] = useState(5);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -36,6 +39,14 @@ function App() {
     }
   };
 
+  const handleMapClick = (lat: number, lon: number) => {
+    setSearchCenter({ lat, lon });
+  };
+
+  const handleClearSearch = () => {
+    setSearchCenter(null);
+  };
+
   return (
     <MainLayout>
       <div className="home-page">
@@ -45,6 +56,16 @@ function App() {
           topPicks={topPicks} 
           fuelTypes={FUEL_TYPES} 
           onStationSelect={handleStationSelect} 
+        />
+
+        <RadiusSearch 
+          stations={allStations}
+          fuelTypes={FUEL_TYPES}
+          searchCenter={searchCenter}
+          radius={searchRadius}
+          onRadiusChange={setSearchRadius}
+          onStationSelect={handleStationSelect}
+          onClearSearch={handleClearSearch}
         />
 
         <section className="main-map-section">
@@ -82,6 +103,9 @@ function App() {
                 stations={allStations} 
                 selectedFuelId={selectedMapFuelId} 
                 focusedStationId={focusedStationId}
+                searchCenter={searchCenter}
+                searchRadius={searchRadius}
+                onMapClick={handleMapClick}
               />
             )}
           </div>

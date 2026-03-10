@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import type { ApiStation } from '../../api/types';
 import { COMPANIES, type CompanyId } from '../../constants/companies';
@@ -24,11 +24,30 @@ const createStationIcon = (color: string) => L.divIcon({
   popupAnchor: [0, -38]
 });
 
+const searchCenterIcon = L.divIcon({
+  className: 'custom-leaflet-icon',
+  html: '<div class="search-center-marker"></div>',
+  iconSize: [24, 24],
+  iconAnchor: [12, 12]
+});
+
 interface FuelMapProps {
   stations: ApiStation[];
   selectedFuelId: number | null;
   focusedStationId?: number | null;
+  searchCenter: { lat: number; lon: number } | null;
+  searchRadius: number;
+  onMapClick: (lat: number, lon: number) => void;
 }
+
+const MapEvents = ({ onMapClick }: { onMapClick: (lat: number, lon: number) => void }) => {
+  useMapEvents({
+    click(e) {
+      onMapClick(e.latlng.lat, e.latlng.lng);
+    },
+  });
+  return null;
+};
 
 interface MapSyncProps {
   focusedStationId: number | null;
@@ -46,8 +65,7 @@ const MapSync: React.FC<MapSyncProps> = ({ focusedStationId, stations, markerRef
       
       if (station && marker) {
         map.flyTo([station.location.latitude, station.location.longitude], 14, {
-          duration: 1.2,
-          easeLinearity: 0.25
+          duration: 1.2
         });
         
         setTimeout(() => {
@@ -60,7 +78,14 @@ const MapSync: React.FC<MapSyncProps> = ({ focusedStationId, stations, markerRef
   return null;
 };
 
-export const FuelMap: React.FC<FuelMapProps> = ({ stations, selectedFuelId, focusedStationId = null }) => {
+export const FuelMap: React.FC<FuelMapProps> = ({ 
+  stations, 
+  selectedFuelId, 
+  focusedStationId = null, 
+  searchCenter, 
+  searchRadius,
+  onMapClick 
+}) => {
   const center: [number, number] = [58.6, 25.5];
   const markerRefs = useRef<Record<number, L.Marker>>({});
 
@@ -83,6 +108,18 @@ export const FuelMap: React.FC<FuelMapProps> = ({ stations, selectedFuelId, focu
       />
       
       <MapSync focusedStationId={focusedStationId} stations={stations} markerRefs={markerRefs} />
+      <MapEvents onMapClick={onMapClick} />
+
+      {searchCenter && (
+        <>
+          <Marker position={[searchCenter.lat, searchCenter.lon]} icon={searchCenterIcon} />
+          <Circle 
+            center={[searchCenter.lat, searchCenter.lon]} 
+            radius={searchRadius * 1000} 
+            pathOptions={{ fillColor: '#2563eb', fillOpacity: 0.1, color: '#2563eb', weight: 1, dashArray: '5, 10' }}
+          />
+        </>
+      )}
       
       {filteredStations.map(station => {
         const company = COMPANIES[station.companyId as CompanyId] || { name: 'Unknown', color: '#666' };
