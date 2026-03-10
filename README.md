@@ -1,33 +1,65 @@
-# Fuelest Estonia
+# ⛽ Fuelest Estonia
 
-A modern, real-time fuel price tracking application for Estonia.
+A high-performance, real-time fuel price monitoring dashboard for Estonia. This application provides a comprehensive overview of fuel costs, historical trends, and location-based deals, all styled with a modern, responsive interface.
 
-## 📊 Data Source
-**Important:** This application is entirely powered by data from [fuelest.ee](https://fuelest.ee/). All fuel price information, station locations, and historical trends are retrieved in real-time from their services. This project is a third-party interface and is not affiliated with fuelest.ee.
+## 📊 Data Source & Legal
+**Important:** This application is a third-party interface and is **entirely powered** by data from [fuelest.ee](https://fuelest.ee/). 
+- All fuel price information, gas station coordinates, and historical data are retrieved in real-time from their public endpoints.
+- This project is for educational and personal use only.
+- We highly recommend visiting the original source for official information.
 
-## ✨ Features
-- **Real-time Tracking**: Up-to-date prices for 95, 98, Diesel, and LPG.
-- **Price Trends**: Interactive charts showing fuel and Brent oil price history.
-- **Interactive Map**: Visualize gas station locations across Estonia.
-- **Custom Search Radius**: Click anywhere on the map to find all stations and best prices within a chosen range (200m to 25km).
-- **Best Deals (24h)**: Highlighting the cheapest options available within the last 24 hours.
-- **Navigation Integration**: Quick links to open station locations in Google Maps or Waze.
+---
+
+## ✨ Key Features
+
+### 📍 Interactive Station Map
+- Visualize gas stations across Estonia using Leaflet.
+- Custom stylized markers and high-quality popups with detailed fuel information.
+- Smooth "Fly-to" navigation when selecting stations from lists.
+
+### 🔍 Advanced Radius Search (UX Optimized)
+- Click anywhere on the map to define a search center.
+- Adjustable radius from **200 meters to 25 kilometers**.
+- Real-time ranked list of all stations in the selected area, sorted by price.
+- Dynamic distance calculation and price update tracking (e.g., "2h ago").
+
+### 📈 Market Insights & Trends
+- Interactive charts powered by **Recharts**.
+- **Dual-axis visualization**: Compare local fuel prices (EUR) against global **Brent Oil** prices (USD).
+- Smart X-axis formatting that adapts to the time range (Week, Month, Year, or Custom).
+- Custom date range selector for deep historical analysis.
+
+### 📱 Modern & Responsive UI
+- Built with **Tailwind CSS v4** for a clean, professional aesthetic.
+- Full support for mobile devices and high-DPI screens.
+- Dark-mode inspired control panels within a light-themed, accessible layout.
+
+---
 
 ## 🛠 Tech Stack
-- **Frontend**: React 19, TypeScript, Vite
-- **Charting**: Recharts
-- **Mapping**: Leaflet & React-Leaflet
-- **Styling**: Vanilla CSS
-- **Linting**: ESLint with TypeScript configurations
+
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite 7](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Type Safety**: [TypeScript](https://www.typescriptlang.org/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Mapping**: [Leaflet](https://leafletjs.com/) & [React-Leaflet](https://react-leaflet.js.org/)
+- **Icons**: Lucide & Custom SVG components
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (Latest LTS)
-- npm
+- **Node.js** (Latest LTS version)
+- **npm** or **pnpm**
 
 ### Installation
-1. Clone the repository
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/fuelest-clone.git
+   cd fuelest-clone
+   ```
 2. Install dependencies:
    ```bash
    npm install
@@ -37,10 +69,10 @@ A modern, real-time fuel price tracking application for Estonia.
    npm run dev
    ```
 
-### Building for Production
-```bash
-npm run build
-```
+### ⚓ CORS & Proxy Note
+To bypass CORS restrictions during development, the project uses a Vite proxy configured in `vite.config.ts`. Requests to `/api-fuel` are redirected to `https://fuelest.ee` with modified headers to match the origin requirements.
+
+---
 
 ## 📝 Credits
-Special thanks to [fuelest.ee](https://fuelest.ee/) for providing the data that makes this application possible.
+Special thanks to the team at [fuelest.ee](https://fuelest.ee/) for their transparency and for providing the data that makes this community tool possible.
